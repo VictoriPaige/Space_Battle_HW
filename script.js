@@ -22,7 +22,7 @@
 // // console.log(hero);  
 //      ^^^^^^^^^ I decided to not use since there is only ONE hero ^^^^^^^^^
 
-
+let roll = Math.random; // <--- should I have a roll function/buttion in order to start play?
 
 const hero = {
     shipName: 'USS_HelloWorld',
@@ -31,9 +31,12 @@ const hero = {
     accuracy: .7,
     isAlive: true,
     attack(target) {
-        if (Math.random() < this.accuracy) {
+        if (roll < this.accuracy) {
             target.hull -= this.firepower;
             console.log(`The ${target.name} has been hit and now has a life hull of ${target.hull}!`)
+        } else if (target.hull <= 0) {
+            this.isAlive === false
+            console.log(`The ${target.name} has been hit and is now dead!`)
         } else {
             console.log(`The attack missed ${target.name}. They still have a life hull of ${target.hull}!`)
         }
@@ -51,36 +54,28 @@ class alien {
         this.isAlive = true;
         attack(target) //  <------- is this function global?
             {
-                if (Math.random() < this.accuracy) {
+                if (roll < this.accuracy) {
                     target.hull -= this.firepower;
                     console.log(`The ${target.name} has been hit and now has a life hull of ${target.hull}!`)
+                } else if (target.hull <= 0) {
+                    this.isAlive === false
+                    console.log(`The ${target.name} has been hit and is now dead!`)
                 } else {
                     console.log(`The attack missed ${target.name}. They still have a life hull of ${target.hull}!`)
                 }
             }
     }
 
-}
-
 };
 
-console.log(alien);
+/// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ FIGHT ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~///
 
-
-
-///ACTIONS!!
-
-
-
-function attack() {
-
-    if (Math.random() < this.accuracy) {
-        console.log('You have been hit!');
+const battle = (hero, alien) => {
+    while (hero.isAlive && alien.isAlive) {
+        hero.attack(alien);
+        if (alien.isAlive) {
+            alien.attack(hero);
+        }
     }
-    this.hull -= this.firepower;
-    console.log(announceHealth(this.name))
-};
-
-function announceHealth() {
-    console.log(`I am ${this.name} my shields are now ${this.hull}`)
-};
+}
+console.log(battle(hero, alien))
