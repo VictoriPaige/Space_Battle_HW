@@ -30,7 +30,7 @@ const hero = {
     firepower: 5,
     accuracy: .7,
     isAlive: true,
-    attack(target) {
+    attack: attack(target) {
         if (roll < this.accuracy) {
             target.hull -= this.firepower;
             console.log(`The ${target.name} has been hit and now has a life hull of ${target.hull}!`)
@@ -43,6 +43,8 @@ const hero = {
     }
 
 }
+
+console.log(attack(alien))
 
 
 class alien {
@@ -71,11 +73,11 @@ class alien {
 /// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ FIGHT ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~///
 
 const battle = (hero, alien) => {
-    while (hero.isAlive && alien.isAlive) {
-        hero.attack(alien);
-        if (alien.isAlive) {
-            alien.attack(hero);
+        while (hero.isAlive && alien.isAlive) {
+            hero.attack(alien);
+            if (alien.isAlive) {
+                alien.attack(hero);
+            }
         }
     }
-}
-console.log(battle(hero, alien))
+    //console.log(battle(hero, alien))
