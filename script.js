@@ -1,9 +1,13 @@
-//make a ship object? with the overarching properties
-//hull, firepowere, accuracy
-//use this object to create the alien and hero ships 
+//make a ship object? with the overarching properties 
+//Prperties: hull, firepower, accuracy
+//use this object to create the alien and hero ships <---yes, but alien and hero property values differ greatly, so I decided to make them seperate objects instead
 
 
-//ACTORS
+//ACTORS: 
+
+//   This was the general ship class code!
+//              ||||||||
+//              vvvvvvvv
 // class hero {
 //     constructor(name, hull, firepower, accuracy) {
 //         this.name = name;
@@ -15,7 +19,9 @@
 // };
 
 // const hero = new Ship('USS_HelloWorld', 20, 5, .7);
-// // console.log(hero);
+// // console.log(hero);  
+//      ^^^^^^^^^ I decided to not use since there is only ONE hero ^^^^^^^^^
+
 
 
 const hero = {
@@ -24,18 +30,17 @@ const hero = {
     firepower: 5,
     accuracy: .7,
     isAlive: true,
-    attack(enemy) {
-
-
+    attack(target) {
+        if (Math.random() < this.accuracy) {
+            target.hull -= this.firepower;
+            console.log(`The ${target.name} has been hit and now has a life hull of ${target.hull}!`)
+        } else {
+            console.log(`The attack missed ${target.name}. They still have a life hull of ${target.hull}!`)
+        }
     }
 
 }
 
-
-
-
-
-// const alien1 = new Ship('Alien1', ); ///should I make new/from scratch 
 
 class alien {
     constructor(name) {
@@ -43,8 +48,19 @@ class alien {
         this.hull = Math.floor(Math.random() * 4) + 3;
         this.firepower = Math.floor(Math.random() * 3) + 2;
         this.accuracy = (Math.floor(Math.random() * 3) + 6) / 10;
-
+        this.isAlive = true;
+        attack(target) //  <------- is this function global?
+            {
+                if (Math.random() < this.accuracy) {
+                    target.hull -= this.firepower;
+                    console.log(`The ${target.name} has been hit and now has a life hull of ${target.hull}!`)
+                } else {
+                    console.log(`The attack missed ${target.name}. They still have a life hull of ${target.hull}!`)
+                }
+            }
     }
+
+}
 
 };
 
