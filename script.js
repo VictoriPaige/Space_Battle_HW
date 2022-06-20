@@ -22,7 +22,7 @@
 // // console.log(hero);  
 //      ^^^^^^^^^ I decided to not use since there is only ONE hero ^^^^^^^^^
 
-let roll = Math.random; // <--- should I have a roll function/buttion in order to start play?
+let roll = Math.random(); // <--- should I have a roll function/buttion in order to start play?
 
 const hero = {
     shipName: 'USS_HelloWorld',
@@ -30,7 +30,7 @@ const hero = {
     firepower: 5,
     accuracy: .7,
     isAlive: true,
-    attack: attack(target) {
+    attack: function(target) {
         if (roll < this.accuracy) {
             target.hull -= this.firepower;
             console.log(`The ${target.name} has been hit and now has a life hull of ${target.hull}!`)
@@ -43,8 +43,6 @@ const hero = {
     }
 
 }
-
-console.log(attack(alien))
 
 
 class alien {
@@ -69,6 +67,8 @@ class alien {
     }
 
 };
+
+console.log(hero.attack(alien));
 
 /// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ FIGHT ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~///
 
