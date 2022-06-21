@@ -73,11 +73,11 @@ console.log(hero.attack(alien));
 /// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ FIGHT ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~///
 
 const battle = (hero, alien) => {
-        while (hero.isAlive && alien.isAlive) {
-            hero.attack(alien);
-            if (alien.isAlive) {
-                alien.attack(hero);
-            }
+    while (hero.isAlive && alien.isAlive) {
+        hero.attack(alien);
+        if (alien.isAlive) {
+            alien.attack(hero);
         }
     }
-    //console.log(battle(hero, alien))
+}
+console.log(battle(hero, alien))
